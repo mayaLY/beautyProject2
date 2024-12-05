@@ -1,5 +1,4 @@
-
-import express from 'express'
+const express = require('express')
 import mongoose from "mongoose";
 import cookieParser from 'cookie-parser'; 
 import 'dotenv/config';
@@ -13,7 +12,7 @@ app.use(express.json());
 app.use(express.static('client/build'));
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
+app.get('/', (req: any, res: any) => {
   res.send('Hello World!')
 })
 
