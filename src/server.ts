@@ -5,7 +5,7 @@ import 'dotenv/config';
 import cors from 'cors'; //npm install cors
 
 const app = express()
-const port = 3001;
+const port = 3006;
 app.use(cors()); //open to the whole world. Highly dangerous!!!
 
 app.use(express.json());
