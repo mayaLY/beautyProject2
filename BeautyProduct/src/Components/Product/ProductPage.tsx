@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function ProductPage() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<any>([]);
 
   useEffect(() => {
     // Fetch products from the server using fetch
