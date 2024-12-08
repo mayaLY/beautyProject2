@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { registerToDB } from '../../../controllers/users/setUsers';
 import styles from './Register.module.scss';
 
-const Register: React.FC = () => {
+ export const Register: React.FC = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');

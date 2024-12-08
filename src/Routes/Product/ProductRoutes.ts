@@ -3,8 +3,8 @@ import { getProducts, addProduct, updateProduct, deleteProduct } from '../../con
 const router = express.Router();
 
 // Routes
-router.get('/', getProducts);
-router.post('/', addProduct);
+router.get('/get-all-products', getProducts);
+router.post('/add-product', addProduct);
 router.put('/:id', updateProduct);
 router.delete('/:id', deleteProduct);
 

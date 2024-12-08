@@ -1,11 +1,19 @@
 import {Schema, model} from 'mongoose';
+import bcrypt from "bcrypt";
 
-
-export const userSchema = new mongoose.Schema({
+export const userSchema = new Schema({
     name: { type: String, required: true },
     userID: { type: String, unique: true, required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
   });
 
-  module.exports = mongoose.model("User", userSchema);
+  userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) return next();
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
+  });
+
+  export const User = model("Client", userSchema);
+
+  export default User;

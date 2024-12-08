@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
+interface Product {
+  _id: string;
+  image: string;
+  name: string;
+  description: string;
+  category: string;
+  stock: number;
+  price: number;
+}
+
 function ProductPage() {
   const [products, setProducts] = useState<any>([]);
 
@@ -25,7 +35,7 @@ function ProductPage() {
     <div className="product-page">
       <h2>Product Catalog</h2>
       <div className="product-grid">
-        {products.map((product) => (
+        {products.map((product: Product) => (
           <div key={product._id} className="product-card">
             <img src={product.image} alt={product.name} />
             <h3>{product.name}</h3>
@@ -41,3 +51,5 @@ function ProductPage() {
 }
 
 export default ProductPage;
+
+

@@ -1,4 +1,4 @@
-import {userSchema} from '../../model/userModel/userModel';
+import User from '../../model/userModel/userModel';
 import bcrypt from 'bcrypt';
 import jwt from 'jwt-simple';
 const saltRounds = Number(process.env.SALT_BCRYPT) || 10;
@@ -15,7 +15,7 @@ export async function addClient(req: any, res: any) {
             userId
         } = req.body;
 
-        const result = await userSchema.create({
+        const result = await User.create({
             name,
             password,
             email,
@@ -48,7 +48,7 @@ export async function register(req: any, res: any) {
 
 
         //send request to DB
-        await userSchema.create({
+        await User.create({
             name,
             email,
             password: hashedPassword,
@@ -69,7 +69,7 @@ export async function login(req: any, res: any) {
         if (!email || !password) throw new Error("Please fill all fields");
 
         // Find user by email
-        const user = await userSchema.findOne({ email });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).send({ error: "Invalid email or password" });
         }

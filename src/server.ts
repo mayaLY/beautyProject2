@@ -7,7 +7,6 @@ import cors from 'cors'; //npm install cors
 const app = express()
 const port = 3006;
 const dbPassword=process.env.DBPASSWORD as string;
-app.use(cors()); //open to the whole world. Highly dangerous!!!
 
 app.use(express.json());
 app.use(express.static('client/build'));
@@ -15,7 +14,7 @@ app.use(cookieParser());
 
 
 //DB
-const DBurl = (`mongodb+srv://${dbPassword}@cluster0.emeus.mongodb.net/beauty-project`)
+const DBurl = process.env.DBURL;
 const database = "beauty"
 
 console.log(DBurl, database);
@@ -28,8 +27,12 @@ mongoose.connect(`${DBurl}/${database}`).then(()=>{
 });
 
 //routes
-import productRoutes from './routes/Product/ProductRoutes';
+import clientsRoutes from './routes/client/clientRoutes'
+app.use("/api/clients", clientsRoutes);
+import productRoutes from './routes/product/productRoutes';
 app.use('/api/products', productRoutes);
+import cartRoutes from './routes/cart/cartRoutes';
+app.use('/api/products', cartRoutes);
 
 
 app.listen(port, () => {

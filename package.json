@@ -28,6 +28,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "jwt-simple": "^0.5.6",
-    "mongoose": "^8.8.3"
+    "mongoose": "^8.8.4"
   }
 }
