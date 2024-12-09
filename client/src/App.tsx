@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import ProductList from './Components/Product/ProductPage';
-import Register from './view/pages/Register';
+import ProductList from './view/pages/main/Main';
+import Register from './view/pages/register/Register';
 
 const App = () => {
 

@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import styles from './Register.module.scss';
+import { registerToDB } from '../../../controllers/users/setUser';
 
  export const Register: React.FC = () => {
     const [firstName, setFirstName] = useState('');
@@ -17,7 +17,7 @@ import styles from './Register.module.scss';
             return;
         }
 
-        const userData = { firstName, lastName, email, password };
+        const userData = { firstName, lastName, email, password, };
         try {
             const data = await registerToDB(userData);
             console.log(data);
