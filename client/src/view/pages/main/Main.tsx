@@ -7,8 +7,9 @@ const ProductPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProducts = async () => {("http://makeup-api.herokuapp.com/api/v1/products.json")
     
+  
     };
 
     getAllProducts().then((products:Product[])=>{
