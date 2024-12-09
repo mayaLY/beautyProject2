@@ -1,22 +1,31 @@
 
 import React, { useState } from 'react';
-import { registerToDB } from '../../../controllers/users/setUsers';
 import styles from './Register.module.scss';
 
  export const Register: React.FC = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [yearOfBirth, setYearOfBirth] = useState(2024);
     const [password, setPassword] = useState('');
 
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission logic here
-        const data = await registerToDB({ firstName, lastName, email, phone, yearOfBirth, password });
-        console.log(data);
+    
+        if (!firstName || !lastName || !email || !password) {
+            alert('Please fill out all required fields.');
+            return;
+        }
+
+        const userData = { firstName, lastName, email, password };
+        try {
+            const data = await registerToDB(userData);
+            console.log(data);
+            alert('Registration successful!');
+        } catch (error) {
+            console.error('Registration failed:', error);
+            alert('Registration failed. Please try again.');
+        }
     };
 
     return (
@@ -53,25 +62,7 @@ import styles from './Register.module.scss';
                         required
                     />
                 </div>
-                <div>
-                    <label htmlFor="phone">Phone:</label>
-                    <input
-                        type="tel"
-                        id="phone"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="yearOfBirth">Year of Birth:</label>
-                    <input
-                        type="number"
-                        id="yearOfBirth"
-                        value={yearOfBirth}
-                        onChange={(e) => setYearOfBirth(e.target.value)}
-                    />
-                </div>
+            
                 <div>
                     <label htmlFor="password">Password:</label>
                     <input
