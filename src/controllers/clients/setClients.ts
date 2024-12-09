@@ -68,7 +68,6 @@ export async function login(req: any, res: any) {
 
         if (!email || !password) throw new Error("Please fill all fields");
 
-        // Find user by email
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).send({ error: "Invalid email or password" });
@@ -87,10 +86,8 @@ export async function login(req: any, res: any) {
 
 
 
-        //encode user id and role in token
         const token = jwt.encode({ id: user._id, role: "user" }, secret);
 
-        //send cookie to client
         res.cookie('user', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 });
 
         return res.status(200).send({ message: "Login successful" });

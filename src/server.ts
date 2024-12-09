@@ -8,6 +8,7 @@ const app = express()
 const port = 3006;
 const dbPassword=process.env.DBPASSWORD as string;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static('client/build'));
 app.use(cookieParser());
