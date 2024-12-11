@@ -2,7 +2,8 @@ import {Schema, model} from 'mongoose';
 import bcrypt from "bcrypt";
 
 export const userSchema = new Schema({
-    name: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName:{ type: String, required: true },
     userID: { type: String, unique: true, required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },

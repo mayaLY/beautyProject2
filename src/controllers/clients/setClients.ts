@@ -9,14 +9,16 @@ export const secret = process.env.SECRET_JWT || "secret"
 export async function addClient(req: any, res: any) {
     try {
         const {
-            name,
+            firstName,
+            lastName,
             password,
             email,
             userId
         } = req.body;
 
         const result = await User.create({
-            name,
+            firstName,
+            lastName,
             password,
             email,
             userId
@@ -37,9 +39,9 @@ export async function addClient(req: any, res: any) {
     
 export async function register(req: any, res: any) {
     try {
-        const { name, email, password } = req.body;
+        const { firstName,lastName, email, password } = req.body;
 
-        if (!name || !email || !password ) {
+        if (!firstName ||!lastName|| !email || !password ) {
             throw new Error('Please fill all fields');
         }
 
