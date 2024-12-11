@@ -51,7 +51,8 @@ export async function register(req: any, res: any) {
 
         //send request to DB
         await User.create({
-            name,
+            firstName,
+            lastName,
             email,
             password: hashedPassword,
         })

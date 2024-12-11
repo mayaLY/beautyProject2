@@ -33,7 +33,7 @@ app.use("/api/clients", clientsRoutes);
 import productRoutes from './routes/product/productRoutes';
 app.use('/api/products', productRoutes);
 import cartRoutes from './routes/cart/cartRoutes';
-app.use('/api/products', cartRoutes);
+app.use('/api/cart', cartRoutes);
 
 
 app.listen(port, () => {
