@@ -1,22 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { Product } from '../../../model/productModel';
 import { getAllProducts } from '../../../controllers/product/getAllProducts';
+import { sendProductsToServer } from '../../../controllers/product/getAllProducts';
 
 
 const ProductPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
 
   useEffect(() => {
-    const fetchProducts = async () => {("http://makeup-api.herokuapp.com/api/v1/products.json")
-    
-  
+    const fetchProducts = async () => {
+
+      try {
+
+        const serverProducts = await getAllProducts();
+
+        setIsLoading(false);
+
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Failed to load products');
+        setIsLoading(false);
+      }
+
     };
 
-    getAllProducts().then((products:Product[])=>{
+    getAllProducts().then((products: Product[]) => {
       setProducts(products);
     });
 
+    fetchProducts();
+
+
   }, []);
+
+  if (isLoading) {
+    return <div>Loading products...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
 
   return (
     <div className="product-page">
@@ -29,6 +56,7 @@ const ProductPage: React.FC = () => {
             <p className="product-category">{product.category || 'Uncategorized'}</p>
             <p className="product-description">{product.description}</p>
             <p className="product-price">${product.price}</p>
+            <p className="product-stock">In Stock: {product.stock}</p>
           </div>
         ))}
       </div>
