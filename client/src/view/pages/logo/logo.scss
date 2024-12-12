@@ -1,0 +1,26 @@
+.banner {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:rgb(210, 149, 145);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0 1rem;
+  }
+  
+  img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+    margin-right: 1rem;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+  }

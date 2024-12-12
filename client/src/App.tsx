@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ProductList from './view/pages/main/Main';
 import Register from './view/pages/register/Register';
+import './App.css'
 
 const App = () => {
 
