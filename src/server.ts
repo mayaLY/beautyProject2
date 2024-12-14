@@ -16,12 +16,12 @@ app.use(cookieParser());
 
 //DB
 const DBurl = process.env.DBURL;
-const database = "beauty"
+// const database = "beauty"
 
-console.log(DBurl, database);
+console.log(DBurl);
 
 //connection
-mongoose.connect(`${DBurl}/${database}`).then(()=>{
+mongoose.connect(`${DBurl}`).then(()=>{
     console.info("DB connected")
 }).catch((err)=>{
     console.error(err)
