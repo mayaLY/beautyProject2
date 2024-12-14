@@ -1,17 +1,21 @@
-import { useState } from "react";
-import { loginToDB } from "../../../controllers/users/setUser";
-import  Style  from "./Login.mofule.scss";
+import React, { useState } from 'react';
+import { loginToDB } from '../../../controllers/users/setUser';
+import styles from './Login.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       try {
         const response = await loginToDB(email, password);
         console.log('Login successful:', response);
+        navigate('/products');
       } catch (error) {
         console.error('Error during login:', error);
         alert('Login failed.');
@@ -19,6 +23,8 @@ const Login: React.FC = () => {
     };
   
     return (
+      <div className={styles.container}>
+
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
@@ -40,6 +46,7 @@ const Login: React.FC = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      </div>
     );
   };
   

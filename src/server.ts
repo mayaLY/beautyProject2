@@ -16,7 +16,6 @@ app.use(cookieParser());
 
 //DB
 const DBurl = process.env.DBURL;
-// const database = "beauty"
 
 console.log(DBurl);
 
