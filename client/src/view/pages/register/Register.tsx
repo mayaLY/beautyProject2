@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import styles from './Register.module.scss';
 import { registerToDB } from '../../../controllers/users/setUser';
+import { useNavigate } from 'react-router-dom';
 
  export const Register: React.FC = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -22,6 +24,7 @@ import { registerToDB } from '../../../controllers/users/setUser';
             const data = await registerToDB(userData);
             console.log(data);
             alert('Registration successful!');
+            navigate('/login');
         } catch (error) {
             console.error('Registration failed:', error);
             alert('Registration failed. Please try again.');
