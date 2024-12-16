@@ -72,40 +72,39 @@ h2 {
   position: fixed;
   top: 2rem;
   right: 2rem;
-
-  .link {
-    margin: 1rem;
-    border: 1px solid blue;
-    border-radius: 5px;
-    height: 2rem;
-    padding: 1rem;
-    background-color: white;
-
-  }
 }
 
-body{
-  background-color:rgb(213,184,182) ;
+.main .link {
+  margin: 1rem;
+  border: 1px solid blue;
+  border-radius: 5px;
+  height: 2rem;
+  padding: 1rem;
+  background-color: white;
+}
+
+body {
+  background-color: #d5b8b6;
 }
 
 .add-to-cart-button {
-  background-color: #6c69ff;      
-  color: white;                   
-  padding: 10px 15px;           
-  border: none;                    
-  cursor: pointer;                 
-  font-size: 14px;                
-  border-radius: 5px;             
-  margin-top: 10px;                
-  transition: background-color 0.3s ease, transform 0.2s ease; 
+  background-color: #6c69ff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-  &:hover {
-    background-color: #143fff;   
-    transform: scale(1.05);       
-  }
+.add-to-cart-button:hover {
+  background-color: #143fff;
+  transform: scale(1.05);
+}
 
-  &:active {
-    background-color: #15c750;   
-    transform: scale(1);          
-  }
+.add-to-cart-button:active {
+  background-color: #15c750;
+  transform: scale(1);
 }

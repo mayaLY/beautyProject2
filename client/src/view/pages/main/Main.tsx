@@ -11,6 +11,8 @@ const ProductPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [cart, setCart] = useState<Product[]>([]);
+  
 
 
   useEffect(() => {
@@ -39,6 +41,9 @@ const ProductPage: React.FC = () => {
 
   }, []);
 
+  const addToCart = (product: Product) => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
 
 
 
@@ -74,6 +79,9 @@ const ProductPage: React.FC = () => {
                 <p className={styles['product-description']}>{product.description}</p>
                 <p className={styles['product-price']}>${product.price}</p>
                 <p className={styles['product-stock']}>In Stock: {product.stock}</p>
+                <button className={styles['add-to-cart-button']} onClick={() => addToCart(product)}>
+                  Add to Cart
+                </button>
               </div>
             ))}
           </div>
