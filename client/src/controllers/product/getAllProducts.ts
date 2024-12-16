@@ -30,7 +30,7 @@ export const sendProductsToServer = async (): Promise<Product[]> => {
         const publicApiProducts = await fetchProductsFromPublicApi();
 
         
-        const response = await fetch('http://localhost:3006/api/clients/add-products', {
+        const response = await fetch('http://localhost:3006/api/products/add-products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -54,12 +54,7 @@ export const sendProductsToServer = async (): Promise<Product[]> => {
 
 export const getAllProducts = async (): Promise<Product[]> => {
     try {
-        const response = await fetch('http://localhost:3006/api/clients/get-all-products', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        const response = await fetch('http://localhost:3006/api/products/get-all-products');
 
         if (!response.ok) {
             throw new Error(`Failed to fetch products. Status: ${response.status}`);

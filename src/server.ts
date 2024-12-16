@@ -15,12 +15,11 @@ app.use(cookieParser());
 
 
 //DB
-const DBurl = process.env.DBURL;
-
-console.log(DBurl);
+const DBurl = process.env.DB_URL;
+const database = process.env.DB_NAME;
 
 //connection
-mongoose.connect(`${DBurl}`).then(()=>{
+mongoose.connect(`${DBurl}/${database}`).then(()=>{
     console.info("DB connected")
 }).catch((err)=>{
     console.error(err)
@@ -29,7 +28,7 @@ mongoose.connect(`${DBurl}`).then(()=>{
 //routes
 import clientsRoutes from './routes/client/clientRoutes'
 app.use("/api/clients", clientsRoutes);
-import productRoutes from './routes/product/productRoutes';
+import productRoutes from './routes/product/ProductRoutes';
 app.use('/api/products', productRoutes);
 import cartRoutes from './routes/cart/cartRoutes';
 app.use('/api/cart', cartRoutes);

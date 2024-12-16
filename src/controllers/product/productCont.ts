@@ -1,9 +1,11 @@
 import Product from '../../model/product/productModel';
+import fetch from 'node-fetch';
 
 //Fetch all products
 export const getProducts = async (req: any, res: any) =>  {
     try {
         const products = await Product.find();
+        console.log("products", products);
         res.status(200).json(products);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch products' });
@@ -42,4 +44,30 @@ export const updateProduct = async (req: any, res: any) => {
       res.status(400).json({ error: 'Failed to delete product' });
     }
   };
+
+
+  export async function populateFromAPI(req: any, res: any) {
+    try {
+      const response = await fetch("https://makeup-api.herokuapp.com/api/v1/products.json");
+      if(!response.ok) {
+        throw new Error(`Failed to fetch products from public API. Status: ${response.status}`);
+      }
+      const publicApiProducts = await response.json();
+      const products = publicApiProducts.map((product: any) => {
+        return{
+          category: product.category,
+          brand: product.brand,
+          name: product.name,
+          image_link: product.image_link,
+          price: product.price,
+        }
+      })
+      console.log("products", products);
+      const savedProducts = await Product.insertMany(products);
+      res.status(201).send({products,savedProducts}); 
+    } catch (error) {
+      console.error('Error populating products from public API:', error);
+      res.status(500).json({ error: 'Failed to populate products from public API' });
+    }
+  }
 
