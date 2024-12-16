@@ -3,9 +3,11 @@ import { getCart, addToCart, deleteFromCart, updateCart } from '../src/controlle
 import { Cart } from '../src/model/cartModel'; // Import your Cart 
 
 const Cart = ({ userId }) => {
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [newProductId, setNewProductId] = useState('');
+  const [newQuantity, setNewQuantity] = useState(1);
 
   // Fetch Cart on Component Mount
   useEffect(() => {
@@ -25,15 +27,17 @@ const Cart = ({ userId }) => {
   };
 
   // Add to Cart
-  const handleAddToCart = async (productId: any, quantity: any) => {
+  const handleAddToCart = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+  
     try {
-      const updatedCart = await addToCart(userId, productId, quantity);
+      const updatedCart = await addToCart(userId, newProductId, newQuantity);
       setCart(updatedCart);
-    } catch (error){
-      setError(error.message);  }
+    } catch (error) {
+      setError(error.message);
+    }
   };
-
-  const handleDeleteFromCart = async (productId: any) => {
+  const handleDeleteFromCart = async (productId: string) => {
     try {
       const updatedCart = await deleteFromCart(userId, productId);
       setCart(updatedCart);
@@ -42,7 +46,7 @@ const Cart = ({ userId }) => {
     }
   };
 
-  const handleUpdateCart = async (productId: any, quantity: any) => {
+  const handleUpdateCart = async (productId: string, quantity: number) => {
     try {
       const updatedCart = await updateCart(userId, productId, quantity);
       setCart(updatedCart);
@@ -53,17 +57,20 @@ const Cart = ({ userId }) => {
   if (loading) return <p>Loading cart...</p>;
   if (error) return <p>{error}</p>;
 
+  if (loading) return <p>Loading cart...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <div>
       <h2>Your Cart</h2>
-
-      {/* Form to Add New Product to Cart */}
+      
+      {/* Add-to-Cart Form */}
       <div>
         <h3>Add Product to Cart</h3>
         <input
           type="text"
           placeholder="Product ID"
-          value ={newProductId}
+          value={newProductId}
           onChange={(e) => setNewProductId(e.target.value)}
         />
         <input
@@ -75,21 +82,17 @@ const Cart = ({ userId }) => {
         <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
 
-      {/* Cart Items List */}
+      {/* Cart Items */}
       {cart && cart.items.length > 0 ? (
         <ul>
-          {cart.items.map((item: CartItem) => (
+          {cart.items.map((item: any) => (
             <li key={item.productId}>
               <img src={item.image} alt={item.name} width="50" />
               <div>
                 <h3>{item.name}</h3>
                 <p>Price: ${item.price}</p>
                 <p>Quantity: {item.quantity}</p>
-
-                {/* Delete Button */}
                 <button onClick={() => handleDeleteFromCart(item.productId)}>Remove</button>
-
-                {/* Update Quantity Input */}
                 <input
                   type="number"
                   min="1"
@@ -103,13 +106,10 @@ const Cart = ({ userId }) => {
       ) : (
         <p>Your cart is empty.</p>
       )}
-
-      {/* Total Price */}
+      
       <h3>Total Price: ${cart?.totalPrice}</h3>
     </div>
   );
 };
 
-
-
-  export default Cart;
+export default Cart;
