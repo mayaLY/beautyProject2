@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getCart, addToCart, deleteFromCart, updateCart } from '../src/controllers/cart/cartService';
-import { Cart } from '../src/model/cartModel'; // Import your Cart 
+import { getCart, addToCart, deleteFromCart, updateCart } from '../../../controllers/cart/cartService';
+import type { Cart } from '../../../model/cartModel'; // Import your Cart 
 
-const Cart = ({ userId }) => {
+const Cart = ({ userId }: { userId?: any }) => {
   const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ const Cart = ({ userId }) => {
       const cartData = await getCart(userId);
       setCart(cartData);
       setLoading(true);
-    } catch (error) {
+    } catch (error: Error| any) {
       setError(error.message);
       setLoading(false);
     }
@@ -33,7 +33,7 @@ const Cart = ({ userId }) => {
     try {
       const updatedCart = await addToCart(userId, newProductId, newQuantity);
       setCart(updatedCart);
-    } catch (error) {
+    } catch (error: Error | any) {
       setError(error.message);
     }
   };
@@ -41,7 +41,7 @@ const Cart = ({ userId }) => {
     try {
       const updatedCart = await deleteFromCart(userId, productId);
       setCart(updatedCart);
-    } catch (error) {
+    } catch (error: Error | any) {
       setError(error.message);
     }
   };
@@ -50,7 +50,7 @@ const Cart = ({ userId }) => {
     try {
       const updatedCart = await updateCart(userId, productId, quantity);
       setCart(updatedCart);
-    } catch (error) {
+    } catch (error: Error | any) {
       setError(error.message);
     }
   };
