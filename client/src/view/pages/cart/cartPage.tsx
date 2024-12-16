@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCart, addToCart, deleteFromCart, updateCart } from '../../../controllers/cart/cartService';
 import type { Cart } from '../../../model/cartModel'; // Import your Cart 
+import './cartPage.css';
 
 const Cart = ({ userId }: { userId?: any }) => {
   const [cart, setCart] = useState<Cart | null>(null);
