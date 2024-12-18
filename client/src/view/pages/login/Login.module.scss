@@ -66,7 +66,7 @@ $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       transition: background-color $transition-duration ease;
 
       &:hover {
-        background-color: darken(rgb(204,173,171), 10%);
+        background-color: darken rgb(204,173,171);
       }
 
       &:active {

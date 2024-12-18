@@ -1,0 +1,94 @@
+.container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.container form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.container form div label {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.container form div input {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.container form div input:focus {
+  outline: none;
+  border-color: #ccadab;
+  box-shadow: 0 0 0 2px rgba(204, 173, 171, 0.2);
+}
+
+.container form div input:invalid {
+  border-color: #e74c3c;
+}
+
+.container form button {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #ccadab;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container form button:hover {
+  background-color: darken #ccadab;
+}
+
+.container form button:active {
+  transform: translateY(1px);
+}
+
+.container form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.container .error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  .container form div input {
+    padding: 0.6rem;
+  }
+}
