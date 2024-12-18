@@ -37,7 +37,16 @@ export const addToCart = async (req:any, res: any) => {
     res.status(500).json({ message: 'An unknown error occurred' });
   }
 };
+// const calculateTotalPrice = async (items) => {
+//   const productDetails = await Promise.all(
+//     items.map(async (item) => {
+//       const product = await Product.findById(item.productId);
+//       return product ? product.price * item.quantity : 0;
+//     })
+//   );
 
+//   return productDetails.reduce((acc, price) => acc + price, 0);
+// };
 // Get cart by userId
 export const getCart = async (req: any, res: any) => {
   try {

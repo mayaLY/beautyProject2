@@ -23,7 +23,7 @@ export const registerToDB = async (clientData: Client) => {
 
 export const loginToDB = async (email: string, password: string) => {
   try {
-    const response = await fetch('api/clients/login', {
+    const response = await fetch('http://localhost:3006/api/clients/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
