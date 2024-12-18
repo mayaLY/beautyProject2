@@ -9,7 +9,8 @@ const cartSchema = new mongoose.Schema({
   items: [
     {
       productId: {
-        type: String, // Match the `productId` type from your `Product` schema
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
         required: true,
       },
       name: {

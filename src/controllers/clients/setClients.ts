@@ -58,6 +58,7 @@ export async function register(req: any, res: any) {
         })
 
         return res.status(201).send({ message: "User registered successfully" });
+        console.log("Received password:", password);
 
     } catch (error: any) {
         console.error(error);
@@ -71,7 +72,7 @@ export async function login(req: any, res: any) {
 
         if (!email || !password) throw new Error("Please fill all fields");
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email});
         if (!user) {
             return res.status(400).send({ error: "Invalid email or password" });
         }
@@ -82,6 +83,7 @@ export async function login(req: any, res: any) {
 
         const match = await bcrypt.compare(password, user.password);
         console.log("is match", match)
+
         if (!match) {
             return res.status(400).send({ error: "Invalid email or password" });
         }

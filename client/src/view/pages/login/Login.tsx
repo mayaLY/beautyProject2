@@ -12,6 +12,11 @@ const Login: React.FC = () => {
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
+      if (!email || !password) {
+        alert('Please fill in both email and password.');
+        return;
+      }
+  
       try {
         const response = await loginToDB(email, password);
         console.log('Login successful:', response);
