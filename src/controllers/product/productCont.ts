@@ -14,14 +14,16 @@ export const getProducts = async (req: any, res: any) =>  {
 
 //Add a product
 export const addProduct = async (req: any, res: any) => {
-    try {
-      const product = new Product(req.body);
-      await product.save();
-      res.status(201).json(product);
-    } catch (error) {
-      res.status(400).json({ error: 'Failed to add product' });
-    }
-  };
+  try {
+    const { name, brand, price, image_link, category } = req.body;
+    const newProduct = new Product({ name, brand, price, image_link, category });
+    await newProduct.save();
+    res.status(201).json({ message: 'Product added successfully!' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error adding product', error });
+  }
+};
+
 
   // Update a product
 export const updateProduct = async (req: any, res: any) => {

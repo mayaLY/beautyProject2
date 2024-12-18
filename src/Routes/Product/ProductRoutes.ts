@@ -10,3 +10,5 @@ router.delete('/:id', deleteProduct);
 router.get('/populate-from-api', populateFromAPI);
 
 export default router;
+
+
