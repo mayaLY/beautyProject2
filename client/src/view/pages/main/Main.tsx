@@ -18,26 +18,20 @@ const ProductPage: React.FC = () => {
 
 
   useEffect(() => {
-    const fetchProducts = async () => {
+   
       try {
         // Fetch both general and specific products
-        const [generalProducts, specificProducts] = await Promise.all([
-          getGeneralProducts(),
-          getAllProducts(),
-        ]);
-
-        // Combine both lists of products
-        setProducts([...generalProducts, ...specificProducts]);
+         getAllProducts().then(products=>{
+          console.log('Products:', products)
+          setProducts(products)
+         })     // Combine both lists of products
+       
         setIsLoading(false);
       } catch (err) {
         console.error('Error fetching products:', err);
         setError('Failed to load products');
         setIsLoading(false);
       }
-    };
-
-    fetchProducts();
-
 
   }, []);
 
