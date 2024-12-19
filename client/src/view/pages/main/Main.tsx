@@ -4,6 +4,8 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import styles from './Main.module.scss';
 import { getAllProducts } from '../../../controllers/product/getAllProducts';
 import Logo from '../logo/Logo';
+import { deleteProduct } from '../../../controllers/product/deleteProduct';
+
 // import { sendProductsToServer } from '../../../controllers/product/getAllProducts';
 
 
@@ -12,7 +14,7 @@ const ProductPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [cart, setCart] = useState<Product[]>([]);
-  
+
 
 
   useEffect(() => {
@@ -43,6 +45,16 @@ const ProductPage: React.FC = () => {
 
   const addToCart = (product: Product) => {
     setCart((prevCart) => [...prevCart, product]);
+  };
+
+  const handleDelete = async (productId: string | undefined) => {
+    if (!productId) return;    try {
+      await deleteProduct(productId);
+      setProducts(products.filter(product => product._id !== productId));
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      setError('Failed to delete product');
+    }
   };
 
 
@@ -81,6 +93,12 @@ const ProductPage: React.FC = () => {
                 <p className={styles['product-stock']}>In Stock: {product.stock}</p>
                 <button className={styles['add-to-cart-button']} onClick={() => addToCart(product)}>
                   Add to Cart
+                </button>
+                <button
+                  className={styles['delete-button']}
+                  onClick={() => handleDelete(product._id)}
+                >
+                  Delete
                 </button>
               </div>
             ))}
