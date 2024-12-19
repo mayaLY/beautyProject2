@@ -68,7 +68,7 @@ export const getAllProducts = async (): Promise<Product[]> => {
     }
 };
 
-export const fetchGeneralProducts = async (): Promise<Product[]> => {
+export const getGeneralProducts = async (): Promise<Product[]> => {
     const response = await fetch('http://localhost:3006/products');
     if (!response.ok) throw new Error(`Failed to fetch general products. Status: ${response.status}`);
     return response.json();

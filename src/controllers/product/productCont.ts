@@ -12,6 +12,16 @@ export const getGeneralProducts = async (req: any, res: any) =>  {
     }
 };
 
+export const getAllProducts = async (req: any, res: any) =>  {
+  try {
+      const products = await Product.find();
+      console.log("products", products);
+      res.status(200).json(products);
+  } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch products' });
+  }
+};
+
 
 
 //Add a product
