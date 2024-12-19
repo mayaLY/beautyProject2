@@ -2,7 +2,7 @@ import Product from '../../model/product/productModel';
 import fetch from 'node-fetch';
 
 //Fetch all products
-export const getProducts = async (req: any, res: any) =>  {
+export const getGeneralProducts = async (req: any, res: any) =>  {
     try {
         const products = await Product.find();
         console.log("products", products);
@@ -11,6 +11,8 @@ export const getProducts = async (req: any, res: any) =>  {
         res.status(500).json({ error: 'Failed to fetch products' });
     }
 };
+
+
 
 //Add a product
 export const addProduct = async (req: any, res: any) => {

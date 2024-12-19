@@ -67,3 +67,30 @@ export const getAllProducts = async (): Promise<Product[]> => {
         throw error;
     }
 };
+
+export const fetchGeneralProducts = async (): Promise<Product[]> => {
+    const response = await fetch('http://localhost:3006/products');
+    if (!response.ok) throw new Error(`Failed to fetch general products. Status: ${response.status}`);
+    return response.json();
+  };
+
+  //export const fetchCombinedProducts = async (): Promise<Product[]> => {
+  //try {
+   // const [apiProductsResponse, generalProductsResponse] = await Promise.all([
+     // fetch('http://localhost:3006/api/products/get-all-products'),
+   //   fetch('http://localhost:3006/products'),
+    //]);
+
+  //  if (!apiProductsResponse.ok || !generalProductsResponse.ok) {
+     // throw new Error('One or more fetch calls failed.');
+//}
+
+    //const apiProducts = await apiProductsResponse.json();
+   // const generalProducts = await generalProductsResponse.json();
+
+   // return [...apiProducts, ...generalProducts];
+  //} catch (error) {
+   // console.error('Error fetching combined products:', error);
+    //throw error;
+ // }
+//};
