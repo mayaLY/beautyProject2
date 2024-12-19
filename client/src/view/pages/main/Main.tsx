@@ -4,6 +4,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import styles from './Main.module.scss';
 import { getAllProducts, getGeneralProducts } from '../../../controllers/product/getAllProducts';
 import Logo from '../logo/Logo';
+
 // import { sendProductsToServer } from '../../../controllers/product/getAllProducts';
 
 
@@ -53,6 +54,7 @@ const ProductPage: React.FC = () => {
       <nav className={styles.main}>
         <Link to="element-Login" className={styles.link}>log in</Link>
         <Link to="element-Register" className={styles.link}>register</Link>
+        <Link to="element-AddProduct" className={styles.link}>Add product</Link>
       </nav>
 
       <div className="element">
