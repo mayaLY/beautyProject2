@@ -5,7 +5,7 @@ import 'dotenv/config';
 import cors from 'cors'; //npm install cors
 
 const app = express()
-const port = 3006;
+const port = process.env.PORT || 3006;
 const dbPassword=process.env.DBPASSWORD as string;
 
 app.use(cors());
