@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Product } from '../../../model/productModel';
 import { Link, Outlet, useLocation } from "react-router-dom";
 import styles from './Main.module.scss';
-import { getAllProducts } from '../../../controllers/product/getAllProducts';
+import { getAllProducts, getGeneralProducts } from '../../../controllers/product/getAllProducts';
 import Logo from '../logo/Logo';
 // import { sendProductsToServer } from '../../../controllers/product/getAllProducts';
+
 
 
 const ProductPage: React.FC = () => {
@@ -14,27 +15,24 @@ const ProductPage: React.FC = () => {
   const [cart, setCart] = useState<Product[]>([]);
   
 
-
   useEffect(() => {
     const fetchProducts = async () => {
-
       try {
+        // Fetch both general and specific products
+        const [generalProducts, specificProducts] = await Promise.all([
+          getGeneralProducts(),
+          getAllProducts(),
+        ]);
 
-        const serverProducts = await getAllProducts();
-
+        // Combine both lists of products
+        setProducts([...generalProducts, ...specificProducts]);
         setIsLoading(false);
-
       } catch (err) {
         console.error('Error fetching products:', err);
         setError('Failed to load products');
         setIsLoading(false);
       }
-
     };
-
-    getAllProducts().then((products: Product[]) => {
-      setProducts(products);
-    });
 
     fetchProducts();
 
