@@ -3,6 +3,7 @@ import Main from './view/pages/main/Main';
 import Login from './view/pages/login/Login';
 import Register from './view/pages/register/Register';
 import AddProductForm from "../components/AddProductForm";
+import Admin from "./view/pages/admin/Admin";
 
 
 
@@ -23,7 +24,10 @@ export const router = createBrowserRouter([
                 element: <Login />,
                 path: "element-logIn"
             },
-
+            {
+                path: "admin",
+                element: <Admin />,
+            },
             {
                 element: <AddProductForm />,
                 path: "element-addProduct"

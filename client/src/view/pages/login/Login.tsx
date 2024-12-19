@@ -20,7 +20,7 @@ const Login: React.FC = () => {
       try {
         const response = await loginToDB(email, password);
         console.log('Login successful:', response);
-        navigate('/products');
+        navigate('/admin');
       } catch (error) {
         console.error('Error during login:', error);
         alert('Login failed.');
