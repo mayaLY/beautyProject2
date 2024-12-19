@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AddProduct.module.scss';
+
 
 interface Product {
   name: string;
