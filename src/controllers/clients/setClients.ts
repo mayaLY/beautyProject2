@@ -1,7 +1,8 @@
 import User from '../../model/userModel/userModel';
 import bcrypt from 'bcrypt';
 import jwt from 'jwt-simple';
-const saltRounds = Number(process.env.SALT_BCRYPT) || 10;
+const saltRounds = 10 ;
+console.log(saltRounds)
 
 
 export const secret = process.env.SECRET_JWT || "secret"
@@ -46,7 +47,7 @@ export async function register(req: any, res: any) {
         }
 
         //hash password
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
 
         //send request to DB
@@ -54,11 +55,12 @@ export async function register(req: any, res: any) {
             firstName,
             lastName,
             email,
-            password: hashedPassword,
+            password:hashedPassword
         })
 
+        console.log("Received password:", password, hashedPassword);
         return res.status(201).send({ message: "User registered successfully" });
-        console.log("Received password:", password);
+       
 
     } catch (error: any) {
         console.error(error);
@@ -79,9 +81,10 @@ export async function login(req: any, res: any) {
 
         if (!user.password) throw new Error("Invalid email or password");
 
+        console.log(password, user.password);
         //compare password
 
-        const match = await bcrypt.compare(password, user.password);
+        const match = bcrypt.compareSync(password, user.password);
         console.log("is match", match)
 
         if (!match) {
@@ -98,7 +101,7 @@ export async function login(req: any, res: any) {
         return res.status(200).send({ message: "Login successful" });
 
     } catch (error: any) {
-        if (error.code = "11000") {
+        if (error.code === "11000") {
             res.status(400).send({ error: "user already exists" })
         }
         console.error(error);

@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 export const getGeneralProducts = async (req: any, res: any) =>  {
     try {
         const products = await Product.find();
-        console.log("products", products);
+      
         res.status(200).json(products);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch products' });
@@ -15,7 +15,7 @@ export const getGeneralProducts = async (req: any, res: any) =>  {
 export const getAllProducts = async (req: any, res: any) =>  {
   try {
       const products = await Product.find();
-      console.log("products", products);
+     
       res.status(200).json(products);
   } catch (error) {
       res.status(500).json({ error: 'Failed to fetch products' });
@@ -76,7 +76,7 @@ export const updateProduct = async (req: any, res: any) => {
           price: product.price,
         }
       })
-      console.log("products", products);
+     
       const savedProducts = await Product.insertMany(products);
       res.status(201).send({products,savedProducts}); 
     } catch (error) {
