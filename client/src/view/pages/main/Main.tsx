@@ -79,7 +79,7 @@ const ProductPage: React.FC = () => {
           <div className={styles['product-grid']}>
             {products.map((product) => (
               <div key={product._id} className={styles['product-card']}>
-                <img src={product.image} alt={product.name} className={styles['product-image']} />
+                <img src={product.image_link} alt={product.name} className={styles['product-image']} />
                 <h3>{product.name}</h3>
                 <p className={styles['product-category']}>{product.category || 'Uncategorized'}</p>
                 <p className={styles['product-description']}>{product.description}</p>

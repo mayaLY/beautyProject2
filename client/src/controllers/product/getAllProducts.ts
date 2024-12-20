@@ -15,7 +15,7 @@ export const fetchProductsFromPublicApi = async (): Promise<Product[]> => {
 
 
         const data = await response.json();
-        return data.products as Product[];
+        return data as Product[];
         
     } catch (error) {
         console.error('Error fetching products from public API:', error);
