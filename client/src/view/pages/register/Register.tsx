@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom';
             const data = await registerToDB(userData);
             console.log(data);
             alert('Registration successful!');
-            navigate('/login');
+            navigate('/element-logIn');
         } catch (error) {
             console.error('Registration failed:', error);
             alert('Registration failed. Please try again.');

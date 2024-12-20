@@ -14,7 +14,7 @@ const ProductPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [cart, setCart] = useState<Product[]>([]);
+  const [Cart, setCart] = useState<Product[]>([]);
 
 
   useEffect(() => {
@@ -60,6 +60,7 @@ const ProductPage: React.FC = () => {
         <Link to="element-Login" className={styles.link}>log in</Link>
         <Link to="element-Register" className={styles.link}>register</Link>
         <Link to="element-AddProduct" className={styles.link}>Add product</Link>
+        <Link to="element-Cart" className={styles.link}>Cart</Link>
       </nav>
 
       <div className="element">

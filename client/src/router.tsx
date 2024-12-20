@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
                 element: <Admin />,
             },
             {
-                path: "cart",
+                path: "element-cart",
                 element: <Cart />,
             },
             {
