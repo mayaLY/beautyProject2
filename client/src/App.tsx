@@ -3,8 +3,7 @@ import ProductList from './view/pages/main/Main';
 import Register from './view/pages/register/Register';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Cart from './view/pages/cart/cartPage';
-import './App.css'
-import AddProductForm from './view/components/addProduct/addProductForm';
+import AddProductForm from './view/Components/addProduct/addProductForm';
 
 
 const App = () => {

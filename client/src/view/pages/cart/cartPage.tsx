@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCart, addToCart, deleteFromCart, updateCart } from '../../../controllers/cart/cartService';
 import type { Cart } from '../../../model/cartModel'; // Import your Cart 
-import './cartPage.css';
+import styles from '../cart/cartPage.module.scss'
 
 const Cart = ({ userId }: { userId?: any }) => {
   const [cart, setCart] = useState<Cart | null>(null);
@@ -10,9 +10,13 @@ const Cart = ({ userId }: { userId?: any }) => {
   const [newProductId, setNewProductId] = useState('');
   const [newQuantity, setNewQuantity] = useState(1);
 
+  const [cartCount, setCartCount] = useState(0);
+
   // Fetch Cart on Component Mount
   useEffect(() => {
     fetchCart();
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCartCount(cart.length);
   }, [userId]);
 
 //fetch cart//
