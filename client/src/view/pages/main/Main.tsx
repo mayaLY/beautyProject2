@@ -12,12 +12,16 @@ import { deleteProduct } from '../../../controllers/product/deleteProduct';
 
 const ProductPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [userName, setUserName] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [Cart, setCart] = useState<Product[]>([]);
 
 
   useEffect(() => {
+    // Fetch user name from local storage
+    const name = localStorage.getItem('username');
+    if (name) setUserName(name);
    
       try {
         // Fetch both general and specific products
@@ -48,7 +52,7 @@ const ProductPage: React.FC = () => {
       setError('Failed to delete product');
     }
   };
-
+  
 
 
   return (
@@ -62,6 +66,9 @@ const ProductPage: React.FC = () => {
         <Link to="element-AddProduct" className={styles.link}>Add product</Link>
         <Link to="element-Cart" className={styles.link}>Cart</Link>
       </nav>
+      <div>
+      {userName ? <h1>Hello, {userName}!</h1> : <h1>Welcome to our app!</h1>}
+    </div>
 
       <div className="element">
         <Outlet />

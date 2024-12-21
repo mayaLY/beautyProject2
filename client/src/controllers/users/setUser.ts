@@ -34,8 +34,10 @@ export const loginToDB = async (email: string, password: string) => {
     if (!response.ok) {
       throw new Error(`Login failed: ${response.statusText}`);
     }
+    const data = await response.json();
+    return data;
 
-    return await response.json(); 
+    // return await response.json(); 
   } catch (error) {
     console.error('Error logging in:', error);
     throw error;

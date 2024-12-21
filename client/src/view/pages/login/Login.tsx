@@ -20,13 +20,19 @@ const Login: React.FC = () => {
       try {
         const response = await loginToDB(email, password);
         console.log('Login successful:', response);
-        navigate('/main');
+        localStorage.setItem('userName', response.name);
+
+        navigate('/');
       } catch (error) {
         console.error('Error during login:', error);
         alert('Login failed.');
       }
     };
-  
+    const handleLogout = () => {
+      localStorage.removeItem('userName');
+      navigate('/login');
+    };
+    if (localStorage.getItem('userName'))   
     return (
       <div className={styles.container}>
 

@@ -70,7 +70,7 @@ export async function register(req: any, res: any) {
 
 export async function login(req: any, res: any) {
     try {
-        const { email, password } = req.body;
+        const { firstName,email, password } = req.body;
 
         if (!email || !password) throw new Error("Please fill all fields");
 
