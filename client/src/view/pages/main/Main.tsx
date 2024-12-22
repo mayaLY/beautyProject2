@@ -6,6 +6,7 @@ import { getAllProducts} from '../../../controllers/product/getAllProducts';
 import Logo from '../logo/Logo';
 import { deleteProduct } from '../../../controllers/product/deleteProduct';
 
+
 // import { sendProductsToServer } from '../../../controllers/product/getAllProducts';
 
 

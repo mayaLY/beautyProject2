@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import styles from './addProduct.module.scss';
+
 
 
 interface Product {
@@ -27,7 +29,7 @@ const AddProductForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -49,7 +51,7 @@ const AddProductForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className ={styles.container}>
       <h2>Add Product</h2>
       <form onSubmit={handleSubmit}>
         <input

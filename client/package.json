@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "css-loader": "^7.1.2",
     "module": "^1.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.2",
     "sass": "^1.83.0",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "style-loader": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
