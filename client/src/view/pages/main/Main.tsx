@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Product } from '../../../model/productModel';
 import { Link, Outlet, useLocation } from "react-router-dom";
 import styles from './Main.module.scss';
-import { getAllProducts, getGeneralProducts } from '../../../controllers/product/getAllProducts';
+import { getAllProducts} from '../../../controllers/product/getAllProducts';
 import Logo from '../logo/Logo';
 import { deleteProduct } from '../../../controllers/product/deleteProduct';
 
