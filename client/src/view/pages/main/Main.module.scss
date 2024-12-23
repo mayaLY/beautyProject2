@@ -1,7 +1,7 @@
 .product-page {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color:rgb(213,184,182) ;
 }
 
 h2 {
@@ -15,9 +15,12 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   margin: 0 auto;
+  background-color:rgb(213,184,182) ;
+  justify-items: center; 
 }
 
 .product-card {
+  // width: 20rem;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -109,3 +112,5 @@ body{
     transform: scale(1);          
   }
 }
+
+
