@@ -32,8 +32,13 @@ const AddProductForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!product.name || !product.price || !product.brand) {
+      setMessage('Please fill out all required fields.');
+      return;
+    }  
+
     try {
-      const response = await fetch('http://localhost:3006/add-product', {
+      const response = await fetch('http://localhost:3006/api/products/add-product', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(product),

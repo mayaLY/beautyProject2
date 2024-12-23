@@ -17,7 +17,7 @@ export async function getCart(userId: any) {
 
 export async function addToCart(userId: string, productId: string, quantity: number) {
     try {
-        const response = await fetch(`${API_BASE_URL}/add-to-cart`, {
+        const response = await fetch(`http://localhost:3006/api/cart/add-to-cart`, {
             method: 'POST',
             headers: {            
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export async function addToCart(userId: string, productId: string, quantity: num
 
 export async function deleteFromCart(userId: string, productId: string) {
     try {
-        const response = await fetch(`${API_BASE_URL}/:userId/delete/:productId/delete`, {
+        const response = await fetch(`'http://localhost:3006/api/cart/:userId/delete/:productId/delete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export async function deleteFromCart(userId: string, productId: string) {
 
 export async function updateCart(userId: string, productId: string, quantity: number) {
     try {
-        const response = await fetch(`${API_BASE_URL}/update-cart`, {
+        const response = await fetch(`'http://localhost:3006/api/cart/update-cart`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
