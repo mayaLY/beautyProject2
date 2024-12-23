@@ -1,10 +1,8 @@
 // src/services/cartService.js
 
-const API_BASE_URL = 'http://localhost:3006/api/cart'; 
-
 export async function getCart(userId: any) {
     try {
-        const response = await fetch(`${API_BASE_URL}/${userId}`);
+        const response = await fetch(`http://localhost:3006/api/cart/${userId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch cart');
         }
@@ -36,7 +34,7 @@ export async function addToCart(userId: string, productId: string, quantity: num
 
 export async function deleteFromCart(userId: string, productId: string) {
     try {
-        const response = await fetch(`'http://localhost:3006/api/cart/:userId/delete/:productId/delete`, {
+        const response = await fetch(`http://localhost:3006/api/cart/${userId}/delete/${productId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
